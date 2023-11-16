@@ -38,6 +38,7 @@ namespace Server
             });
 
             t.Start();
+            MessageBox.Show("Dang nghe");
         }
 
         private void uiTextBox1_TextChanged(object sender, EventArgs e)

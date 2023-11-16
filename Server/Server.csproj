@@ -36,6 +36,7 @@
     <Reference Include="ControlCustom">
       <HintPath>..\..\LibraryCus\ControlCustom\ControlCustom\bin\Debug\ControlCustom.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41" />
     <Reference Include="SunnyUI, Version=3.5.2.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\SunnyUI.3.5.2\lib\net472\SunnyUI.dll</HintPath>
     </Reference>

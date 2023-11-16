@@ -1,10 +1,12 @@
 ﻿using ControlCustom;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,6 +24,8 @@ namespace Server
         private BinaryWriter writer;
         private bool isConnected;
         private string passServer;
+        private VoiceIn voiceIn;
+        private VoiceOut voiceOut;
 
         public ClientHandler(TcpClient client, string passClient)
         {
@@ -31,6 +35,17 @@ namespace Server
             this.writer = new BinaryWriter(stream);
             this.isConnected = true;
             this.passServer = passClient;
+            InitVoice();
+        }
+        private void InitVoice()
+        {
+            var hostname = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+            voiceIn = new VoiceIn(hostname,6969); 
+
+            WaveFormat waveFormat = new WaveFormat(44100,1);
+            voiceOut = new VoiceOut(waveFormat, 6969); // listening port 6969
+
+            Console.WriteLine(hostname);
         }
 
         public void SendDesktop(int fps = 60)
@@ -133,8 +148,9 @@ namespace Server
             {
                 writer.Write(false); // send rs;
             }
-
             writer.Write(true);
+
+
             if (isConnected)
             {
                 Thread sendDesktop = new Thread(() =>
@@ -145,9 +161,24 @@ namespace Server
                 {
                     ReceiveClientMessage();
                 });
+                Thread voiceRecord = new Thread(() =>
+                {
+                    voiceIn.StartRecording();
+                });
+                Thread voicePlay = new Thread(() =>
+                {
+                    while(true)
+                    {
+                        voiceOut.ReceiveData();
+                    }
+                    
+                });
+
 
                 sendDesktop.Start();
                 receiveClientMessage.Start();
+                voiceRecord.Start();
+                voicePlay.Start();
             }
         }
 
