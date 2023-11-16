@@ -6,6 +6,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,14 +21,16 @@ namespace Server
         private BinaryReader reader;
         private BinaryWriter writer;
         private bool isConnected;
+        private string passServer;
 
-        public ClientHandler(TcpClient client)
+        public ClientHandler(TcpClient client, string passClient)
         {
             this.client = client;
             this.stream = client.GetStream();
             this.reader = new BinaryReader(stream); 
             this.writer = new BinaryWriter(stream);
             this.isConnected = true;
+            this.passServer = passClient;
         }
 
         public void SendDesktop(int fps = 60)
@@ -125,6 +128,13 @@ namespace Server
 
         public void Start()
         {
+            // receive pass
+            while(!CheckPass()) 
+            {
+                writer.Write(false); // send rs;
+            }
+
+            writer.Write(true);
             if (isConnected)
             {
                 Thread sendDesktop = new Thread(() =>
@@ -139,6 +149,12 @@ namespace Server
                 sendDesktop.Start();
                 receiveClientMessage.Start();
             }
+        }
+
+        private bool CheckPass()
+        {
+            string passClient = reader.ReadString();
+            return passClient == this.passServer;
         }
 
 
