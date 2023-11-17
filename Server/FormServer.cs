@@ -17,19 +17,33 @@ namespace Server
         public FormServer()
         {
             InitializeComponent();
-            server = new MyServer(5910);
+            
         }
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            
+        }
+
+        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        {
+            string pass = txtPassword.Text;
+
+            server = new MyServer(5910, pass);
             Thread t = new Thread(() =>
             {
                 server.Start();
             });
-            label1.Text = "Is Listening";
 
             t.Start();
-            
+            MessageBox.Show("Dang nghe");
+        }
+
+        private void uiTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

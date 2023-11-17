@@ -17,11 +17,13 @@ namespace Server
         private int port;
         private bool isListening;
         private ArrayList handlers;
+        private string passServer;
 
-        public MyServer(int port)
+        public MyServer(int port, string passServer="")
         {
             this.port = port;
             handlers = new ArrayList();
+            this.passServer = passServer;
         }
 
         public void Start()
@@ -32,7 +34,7 @@ namespace Server
             while (isListening)
             {
                 var client = server.AcceptTcpClient();
-                var clientHandler = new ClientHandler(client);
+                var clientHandler = new ClientHandler(client,passServer);
                 handlers.Add(clientHandler);
                 clientHandler.Start();
             }
