@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlCustom">
-      <HintPath>..\..\LibraryCus\ControlCustom\ControlCustom\bin\Debug\ControlCustom.dll</HintPath>
+      <HintPath>..\..\Library\ControlCustom\bin\Debug\ControlCustom.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
