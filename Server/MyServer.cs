@@ -28,15 +28,24 @@ namespace Server
 
         public void Start()
         {
+
             server = new TcpListener(IPAddress.Any,port);
             server.Start();
             isListening = true;
             while (isListening)
             {
-                var client = server.AcceptTcpClient();
-                var clientHandler = new ClientHandler(client,passServer);
-                handlers.Add(clientHandler);
-                clientHandler.Start();
+                try
+                {
+                    var client = server.AcceptTcpClient();
+                    var clientHandler = new ClientHandler(client, passServer);
+                    handlers.Add(clientHandler);
+                    clientHandler.Start();
+                }
+                catch (SocketException) 
+                {
+                    break;
+                }
+                
             }
 
         }

@@ -17,11 +17,22 @@ namespace Server
         public FormServer()
         {
             InitializeComponent();
-            
+            Init();
+        }
+
+        private void Init() 
+        {
+            btnStop.Enabled = false;
+            btnChat.Enabled = false;
+
         }
         
         private void btnListen_Click(object sender, EventArgs e)
         {
+            btnListen.Enabled = false;
+            btnStop.Enabled = true;
+            this.Log("Server is listening!");
+
             string pass = txtPassword.Text;
 
             server = new MyServer(5910, pass);
@@ -31,7 +42,6 @@ namespace Server
             });
 
             t.Start();
-            MessageBox.Show("Dang nghe");
         }
 
         private void btnChat_Click(object sender, EventArgs e)
@@ -53,6 +63,11 @@ namespace Server
             }
         }
 
+        public void Log(string log)
+        {
+            txtaLog.AppendText(log+"\n");
+        }
+
         private void swSpeaker_ValueChanged(object sender, bool value)
         {
             var client = server.GetClientHandler();
@@ -65,5 +80,16 @@ namespace Server
                 client.StopReceiveVoice();
             }
         }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            btnListen.Enabled = true;
+            btnStop.Enabled = false;
+            this.Log("Server is stopped!");
+
+            server.Stop();
+        }
+
+       
     }
 }
