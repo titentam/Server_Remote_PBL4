@@ -45,5 +45,17 @@ namespace Server
         {
 
         }
+
+        private void uiSymbolButton2_Click_1(object sender, EventArgs e)
+        {
+            ChatForm chatForm = new ChatForm();
+            chatForm.StartChat();
+            chatForm.Show();
+        }
+
+        private void uiRichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,6 +41,7 @@
             this.uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
             this.uiSymbolLabel4 = new Sunny.UI.UISymbolLabel();
             this.uiPanel2 = new Sunny.UI.UIPanel();
+            this.uiSymbolButton2 = new Sunny.UI.UISymbolButton();
             this.uiPanel1.SuspendLayout();
             this.uiPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -58,11 +59,11 @@
             this.uiPanel1.Controls.Add(this.uiTextBox1);
             this.uiPanel1.Controls.Add(this.txtIP);
             this.uiPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel1.Location = new System.Drawing.Point(38, 68);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel1.Location = new System.Drawing.Point(51, 84);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(266, 366);
+            this.uiPanel1.Size = new System.Drawing.Size(355, 450);
             this.uiPanel1.TabIndex = 0;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -196,15 +197,16 @@
             // 
             this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
             this.uiRichTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiRichTextBox1.Location = new System.Drawing.Point(16, 57);
+            this.uiRichTextBox1.Location = new System.Drawing.Point(0, 57);
             this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRichTextBox1.Name = "uiRichTextBox1";
             this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
             this.uiRichTextBox1.ShowText = false;
-            this.uiRichTextBox1.Size = new System.Drawing.Size(267, 279);
+            this.uiRichTextBox1.Size = new System.Drawing.Size(283, 226);
             this.uiRichTextBox1.TabIndex = 6;
             this.uiRichTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiRichTextBox1.TextChanged += new System.EventHandler(this.uiRichTextBox1_TextChanged);
             // 
             // uiSymbolLabel4
             // 
@@ -223,24 +225,39 @@
             this.uiPanel2.Controls.Add(this.uiSymbolLabel4);
             this.uiPanel2.Controls.Add(this.uiRichTextBox1);
             this.uiPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel2.Location = new System.Drawing.Point(329, 68);
-            this.uiPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel2.Location = new System.Drawing.Point(439, 84);
+            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.Size = new System.Drawing.Size(306, 366);
+            this.uiPanel2.Size = new System.Drawing.Size(408, 450);
             this.uiPanel2.TabIndex = 9;
             this.uiPanel2.Text = "uiPanel2";
             this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // uiSymbolButton2
+            // 
+            this.uiSymbolButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.uiSymbolButton2.Location = new System.Drawing.Point(358, 12);
+            this.uiSymbolButton2.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton2.Name = "uiSymbolButton2";
+            this.uiSymbolButton2.Size = new System.Drawing.Size(231, 51);
+            this.uiSymbolButton2.Symbol = 119;
+            this.uiSymbolButton2.SymbolSize = 35;
+            this.uiSymbolButton2.TabIndex = 9;
+            this.uiSymbolButton2.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.uiSymbolButton2.Click += new System.EventHandler(this.uiSymbolButton2_Click_1);
+            // 
             // FormServer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(842, 545);
+            this.ClientSize = new System.Drawing.Size(903, 671);
+            this.Controls.Add(this.uiSymbolButton2);
             this.Controls.Add(this.uiPanel2);
             this.Controls.Add(this.uiPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormServer";
             this.Text = "Form1";
             this.uiPanel1.ResumeLayout(false);
@@ -264,6 +281,7 @@
         private Sunny.UI.UISymbolButton btnListen;
         private Sunny.UI.UISymbolLabel uiSymbolLabel4;
         private Sunny.UI.UIPanel uiPanel2;
+        private Sunny.UI.UISymbolButton uiSymbolButton2;
     }
 }
 
