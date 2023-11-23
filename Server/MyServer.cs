@@ -40,7 +40,6 @@ namespace Server
             }
 
         }
-
         public void Stop()
         {
            for (int i = 0; i < handlers.Count; i++)
@@ -49,6 +48,12 @@ namespace Server
                 handler.Stop();
             }
            server.Stop();
+        }
+
+        public ClientHandler GetClientHandler()
+        {
+            if (handlers.Count == 0) return null;
+            return (ClientHandler)handlers[0];
         }
 
     }

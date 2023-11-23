@@ -19,15 +19,8 @@ namespace Server
             InitializeComponent();
             
         }
-
         
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void uiSymbolButton2_Click(object sender, EventArgs e)
+        private void btnListen_Click(object sender, EventArgs e)
         {
             string pass = txtPassword.Text;
 
@@ -41,21 +34,36 @@ namespace Server
             MessageBox.Show("Dang nghe");
         }
 
-        private void uiTextBox1_TextChanged(object sender, EventArgs e)
+        private void btnChat_Click(object sender, EventArgs e)
         {
-
+            ChatForm.Instance.SendMessage = server.GetClientHandler().SendMessage;
+            ChatForm.Instance.Show();
         }
 
-        private void uiSymbolButton2_Click_1(object sender, EventArgs e)
+        private void swVoice_ValueChanged(object sender, bool value)
         {
-            ChatForm chatForm = new ChatForm();
-            chatForm.StartChat();
-            chatForm.Show();
+            var client = server.GetClientHandler();
+            if (swVoice.Active)
+            {
+                client.VoiceRecorder();
+            }
+            else
+            {
+                client.VoiceStop();
+            }
         }
 
-        private void uiRichTextBox1_TextChanged(object sender, EventArgs e)
+        private void swSpeaker_ValueChanged(object sender, bool value)
         {
-
+            var client = server.GetClientHandler();
+            if (swSpeaker.Active)
+            {
+                client.ReceiveVoice();
+            }
+            else
+            {
+                client.StopReceiveVoice();
+            }
         }
     }
 }

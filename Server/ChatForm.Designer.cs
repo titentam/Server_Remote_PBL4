@@ -31,7 +31,7 @@
             this.chatArea = new Sunny.UI.UIRichTextBox();
             this.uiRichTextBox2 = new Sunny.UI.UIRichTextBox();
             this.uiPanel1 = new Sunny.UI.UIPanel();
-            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.btnSend = new Sunny.UI.UISymbolButton();
             this.chatTxt = new Sunny.UI.UITextBox();
             this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             // 
             // uiPanel1
             // 
-            this.uiPanel1.Controls.Add(this.uiSymbolButton1);
+            this.uiPanel1.Controls.Add(this.btnSend);
             this.uiPanel1.Controls.Add(this.chatTxt);
             this.uiPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -83,19 +83,19 @@
             this.uiPanel1.Text = "uiPanel1";
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiSymbolButton1
+            // btnSend
             // 
-            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(320, 1);
-            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton1.Name = "uiSymbolButton1";
-            this.uiSymbolButton1.Size = new System.Drawing.Size(60, 50);
-            this.uiSymbolButton1.Symbol = 557699;
-            this.uiSymbolButton1.SymbolSize = 35;
-            this.uiSymbolButton1.TabIndex = 1;
-            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            this.btnSend.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSend.Location = new System.Drawing.Point(356, 1);
+            this.btnSend.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(60, 41);
+            this.btnSend.Symbol = 557699;
+            this.btnSend.SymbolSize = 35;
+            this.btnSend.TabIndex = 1;
+            this.btnSend.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSend.Click += new System.EventHandler(this.uiSymbolButton1_Click);
             // 
             // chatTxt
             // 
@@ -107,7 +107,7 @@
             this.chatTxt.Name = "chatTxt";
             this.chatTxt.Padding = new System.Windows.Forms.Padding(5);
             this.chatTxt.ShowText = false;
-            this.chatTxt.Size = new System.Drawing.Size(292, 48);
+            this.chatTxt.Size = new System.Drawing.Size(347, 39);
             this.chatTxt.TabIndex = 0;
             this.chatTxt.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.chatTxt.Watermark = "";
@@ -120,7 +120,7 @@
             this.Controls.Add(this.uiPanel1);
             this.Controls.Add(this.uiRichTextBox2);
             this.Controls.Add(this.chatArea);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ChatForm";
             this.Text = "ChatForm";
             this.uiPanel1.ResumeLayout(false);
@@ -133,7 +133,7 @@
         private Sunny.UI.UIRichTextBox chatArea;
         private Sunny.UI.UIRichTextBox uiRichTextBox2;
         private Sunny.UI.UIPanel uiPanel1;
-        private Sunny.UI.UISymbolButton uiSymbolButton1;
+        private Sunny.UI.UISymbolButton btnSend;
         private Sunny.UI.UITextBox chatTxt;
     }
 }
