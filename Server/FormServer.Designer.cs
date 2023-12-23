@@ -56,10 +56,11 @@
             // 
             uiSmoothLabel1.Font = new System.Drawing.Font("Snap ITC", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             uiSmoothLabel1.ForeColor = System.Drawing.Color.DarkGray;
-            uiSmoothLabel1.Location = new System.Drawing.Point(173, 18);
+            uiSmoothLabel1.Location = new System.Drawing.Point(231, 22);
+            uiSmoothLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             uiSmoothLabel1.Name = "uiSmoothLabel1";
             uiSmoothLabel1.RectColor = System.Drawing.Color.Black;
-            uiSmoothLabel1.Size = new System.Drawing.Size(401, 75);
+            uiSmoothLabel1.Size = new System.Drawing.Size(535, 92);
             uiSmoothLabel1.Style = Sunny.UI.UIStyle.Custom;
             uiSmoothLabel1.TabIndex = 11;
             uiSmoothLabel1.Text = "BK Server";
@@ -78,11 +79,11 @@
             this.uiPanel1.Controls.Add(this.uiTextBox1);
             this.uiPanel1.Controls.Add(this.txtIP);
             this.uiPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel1.Location = new System.Drawing.Point(37, 117);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel1.Location = new System.Drawing.Point(49, 144);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(266, 366);
+            this.uiPanel1.Size = new System.Drawing.Size(355, 450);
             this.uiPanel1.TabIndex = 0;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -126,7 +127,6 @@
             this.uiSymbolButton1.Symbol = 61473;
             this.uiSymbolButton1.TabIndex = 5;
             this.uiSymbolButton1.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-          
             // 
             // uiSymbolLabel3
             // 
@@ -245,11 +245,11 @@
             this.uiPanel2.Controls.Add(this.uiSymbolLabel4);
             this.uiPanel2.Controls.Add(this.txtaLog);
             this.uiPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel2.Location = new System.Drawing.Point(325, 117);
-            this.uiPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel2.Location = new System.Drawing.Point(433, 144);
+            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.Size = new System.Drawing.Size(306, 366);
+            this.uiPanel2.Size = new System.Drawing.Size(408, 450);
             this.uiPanel2.TabIndex = 9;
             this.uiPanel2.Text = "uiPanel2";
             this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,11 +258,11 @@
             // 
             this.btnChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnChat.Location = new System.Drawing.Point(540, 493);
-            this.btnChat.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChat.Location = new System.Drawing.Point(720, 607);
+            this.btnChat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnChat.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnChat.Name = "btnChat";
-            this.btnChat.Size = new System.Drawing.Size(91, 41);
+            this.btnChat.Size = new System.Drawing.Size(121, 50);
             this.btnChat.Symbol = 119;
             this.btnChat.SymbolSize = 35;
             this.btnChat.TabIndex = 9;
@@ -272,9 +272,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Server.Properties.Resources.logo2;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(113, 109);
+            this.pictureBox1.Size = new System.Drawing.Size(151, 134);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -284,10 +285,11 @@
             this.swVoice.ActiveText = "Mic";
             this.swVoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.swVoice.InActiveText = "Mic";
-            this.swVoice.Location = new System.Drawing.Point(37, 505);
+            this.swVoice.Location = new System.Drawing.Point(49, 622);
+            this.swVoice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.swVoice.MinimumSize = new System.Drawing.Size(1, 1);
             this.swVoice.Name = "swVoice";
-            this.swVoice.Size = new System.Drawing.Size(75, 29);
+            this.swVoice.Size = new System.Drawing.Size(100, 36);
             this.swVoice.TabIndex = 12;
             this.swVoice.Text = "Bat";
             this.swVoice.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swVoice_ValueChanged);
@@ -297,20 +299,21 @@
             this.swSpeaker.ActiveText = "Speaker";
             this.swSpeaker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.swSpeaker.InActiveText = "Speaker";
-            this.swSpeaker.Location = new System.Drawing.Point(134, 505);
+            this.swSpeaker.Location = new System.Drawing.Point(179, 622);
+            this.swSpeaker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.swSpeaker.MinimumSize = new System.Drawing.Size(1, 1);
             this.swSpeaker.Name = "swSpeaker";
-            this.swSpeaker.Size = new System.Drawing.Size(75, 29);
+            this.swSpeaker.Size = new System.Drawing.Size(100, 36);
             this.swSpeaker.TabIndex = 13;
             this.swSpeaker.Text = "Bat";
             this.swSpeaker.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swSpeaker_ValueChanged);
             // 
             // FormServer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(677, 559);
+            this.ClientSize = new System.Drawing.Size(874, 699);
             this.Controls.Add(this.swSpeaker);
             this.Controls.Add(this.swVoice);
             this.Controls.Add(uiSmoothLabel1);
@@ -318,7 +321,7 @@
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.uiPanel2);
             this.Controls.Add(this.uiPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormServer";
             this.Text = "Form1";
             this.uiPanel1.ResumeLayout(false);

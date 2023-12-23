@@ -23,7 +23,9 @@ namespace Server
         private void Init() 
         {
             btnStop.Enabled = false;
-            btnChat.Enabled = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //btnChat.Enabled = false;
 
         }
         
@@ -46,8 +48,9 @@ namespace Server
 
         private void btnChat_Click(object sender, EventArgs e)
         {
-            ChatForm.Instance.SendMessage = server.GetClientHandler().SendMessage;
-            ChatForm.Instance.Show();
+            ChatForm chatForm = new ChatForm();
+            chatForm.StartChat();
+            chatForm.Show();
         }
 
         private void swVoice_ValueChanged(object sender, bool value)
