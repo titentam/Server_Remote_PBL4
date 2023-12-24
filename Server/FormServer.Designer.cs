@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Sunny.UI.UISmoothLabel uiSmoothLabel1;
             this.uiPanel1 = new Sunny.UI.UIPanel();
-            this.uiSymbolButton3 = new Sunny.UI.UISymbolButton();
+            this.btnStop = new Sunny.UI.UISymbolButton();
             this.btnListen = new Sunny.UI.UISymbolButton();
             this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
@@ -38,17 +39,37 @@
             this.txtPassword = new Sunny.UI.UITextBox();
             this.uiTextBox1 = new Sunny.UI.UITextBox();
             this.txtIP = new Sunny.UI.UIIPTextBox();
-            this.uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            this.txtaLog = new Sunny.UI.UIRichTextBox();
             this.uiSymbolLabel4 = new Sunny.UI.UISymbolLabel();
             this.uiPanel2 = new Sunny.UI.UIPanel();
+            this.btnChat = new Sunny.UI.UISymbolButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.swVoice = new Sunny.UI.UISwitch();
+            this.swSpeaker = new Sunny.UI.UISwitch();
+            uiSmoothLabel1 = new Sunny.UI.UISmoothLabel();
             this.uiPanel1.SuspendLayout();
             this.uiPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // uiSmoothLabel1
+            // 
+            uiSmoothLabel1.Font = new System.Drawing.Font("Snap ITC", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            uiSmoothLabel1.ForeColor = System.Drawing.Color.DarkGray;
+            uiSmoothLabel1.Location = new System.Drawing.Point(231, 22);
+            uiSmoothLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            uiSmoothLabel1.Name = "uiSmoothLabel1";
+            uiSmoothLabel1.RectColor = System.Drawing.Color.Black;
+            uiSmoothLabel1.Size = new System.Drawing.Size(535, 92);
+            uiSmoothLabel1.Style = Sunny.UI.UIStyle.Custom;
+            uiSmoothLabel1.TabIndex = 11;
+            uiSmoothLabel1.Text = "BK Server";
+            uiSmoothLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiPanel1
             // 
             this.uiPanel1.BackColor = System.Drawing.SystemColors.Control;
-            this.uiPanel1.Controls.Add(this.uiSymbolButton3);
+            this.uiPanel1.Controls.Add(this.btnStop);
             this.uiPanel1.Controls.Add(this.btnListen);
             this.uiPanel1.Controls.Add(this.uiSymbolButton1);
             this.uiPanel1.Controls.Add(this.uiSymbolLabel3);
@@ -58,27 +79,28 @@
             this.uiPanel1.Controls.Add(this.uiTextBox1);
             this.uiPanel1.Controls.Add(this.txtIP);
             this.uiPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel1.Location = new System.Drawing.Point(38, 68);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel1.Location = new System.Drawing.Point(49, 144);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(266, 366);
+            this.uiPanel1.Size = new System.Drawing.Size(355, 450);
             this.uiPanel1.TabIndex = 0;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiSymbolButton3
+            // btnStop
             // 
-            this.uiSymbolButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiSymbolButton3.Location = new System.Drawing.Point(137, 301);
-            this.uiSymbolButton3.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton3.Name = "uiSymbolButton3";
-            this.uiSymbolButton3.Size = new System.Drawing.Size(117, 35);
-            this.uiSymbolButton3.Symbol = 262093;
-            this.uiSymbolButton3.TabIndex = 7;
-            this.uiSymbolButton3.Text = "Stop";
-            this.uiSymbolButton3.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnStop.Location = new System.Drawing.Point(137, 301);
+            this.btnStop.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(117, 35);
+            this.btnStop.Symbol = 262093;
+            this.btnStop.TabIndex = 7;
+            this.btnStop.Text = "Stop";
+            this.btnStop.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnListen
             // 
@@ -92,7 +114,7 @@
             this.btnListen.TabIndex = 6;
             this.btnListen.Text = "Listen";
             this.btnListen.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnListen.Click += new System.EventHandler(this.uiSymbolButton2_Click);
+            this.btnListen.Click += new System.EventHandler(this.btnListen_Click);
             // 
             // uiSymbolButton1
             // 
@@ -177,7 +199,6 @@
             this.uiTextBox1.Text = "5910";
             this.uiTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiTextBox1.Watermark = "";
-            this.uiTextBox1.TextChanged += new System.EventHandler(this.uiTextBox1_TextChanged);
             // 
             // txtIP
             // 
@@ -192,25 +213,26 @@
             this.txtIP.TabIndex = 0;
             this.txtIP.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiRichTextBox1
+            // txtaLog
             // 
-            this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
-            this.uiRichTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiRichTextBox1.Location = new System.Drawing.Point(16, 57);
-            this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiRichTextBox1.Name = "uiRichTextBox1";
-            this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.uiRichTextBox1.ShowText = false;
-            this.uiRichTextBox1.Size = new System.Drawing.Size(267, 279);
-            this.uiRichTextBox1.TabIndex = 6;
-            this.uiRichTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtaLog.FillColor = System.Drawing.Color.White;
+            this.txtaLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtaLog.Location = new System.Drawing.Point(16, 57);
+            this.txtaLog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtaLog.MinimumSize = new System.Drawing.Size(1, 1);
+            this.txtaLog.Name = "txtaLog";
+            this.txtaLog.Padding = new System.Windows.Forms.Padding(2);
+            this.txtaLog.ReadOnly = true;
+            this.txtaLog.ShowText = false;
+            this.txtaLog.Size = new System.Drawing.Size(269, 279);
+            this.txtaLog.TabIndex = 6;
+            this.txtaLog.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiSymbolLabel4
             // 
             this.uiSymbolLabel4.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.uiSymbolLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiSymbolLabel4.Location = new System.Drawing.Point(16, 23);
+            this.uiSymbolLabel4.Location = new System.Drawing.Point(3, 23);
             this.uiSymbolLabel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolLabel4.Name = "uiSymbolLabel4";
             this.uiSymbolLabel4.Size = new System.Drawing.Size(75, 26);
@@ -221,30 +243,90 @@
             // uiPanel2
             // 
             this.uiPanel2.Controls.Add(this.uiSymbolLabel4);
-            this.uiPanel2.Controls.Add(this.uiRichTextBox1);
+            this.uiPanel2.Controls.Add(this.txtaLog);
             this.uiPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiPanel2.Location = new System.Drawing.Point(329, 68);
-            this.uiPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.uiPanel2.Location = new System.Drawing.Point(433, 144);
+            this.uiPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel2.Name = "uiPanel2";
-            this.uiPanel2.Size = new System.Drawing.Size(306, 366);
+            this.uiPanel2.Size = new System.Drawing.Size(408, 450);
             this.uiPanel2.TabIndex = 9;
             this.uiPanel2.Text = "uiPanel2";
             this.uiPanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnChat
+            // 
+            this.btnChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnChat.Location = new System.Drawing.Point(720, 607);
+            this.btnChat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnChat.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(121, 50);
+            this.btnChat.Symbol = 119;
+            this.btnChat.SymbolSize = 35;
+            this.btnChat.TabIndex = 9;
+            this.btnChat.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Server.Properties.Resources.logo2;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(151, 134);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
+            // swVoice
+            // 
+            this.swVoice.ActiveText = "Mic";
+            this.swVoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swVoice.InActiveText = "Mic";
+            this.swVoice.Location = new System.Drawing.Point(49, 622);
+            this.swVoice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.swVoice.MinimumSize = new System.Drawing.Size(1, 1);
+            this.swVoice.Name = "swVoice";
+            this.swVoice.Size = new System.Drawing.Size(100, 36);
+            this.swVoice.TabIndex = 12;
+            this.swVoice.Text = "Bat";
+            this.swVoice.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swVoice_ValueChanged);
+            // 
+            // swSpeaker
+            // 
+            this.swSpeaker.ActiveText = "Speaker";
+            this.swSpeaker.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swSpeaker.InActiveText = "Speaker";
+            this.swSpeaker.Location = new System.Drawing.Point(179, 622);
+            this.swSpeaker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.swSpeaker.MinimumSize = new System.Drawing.Size(1, 1);
+            this.swSpeaker.Name = "swSpeaker";
+            this.swSpeaker.Size = new System.Drawing.Size(100, 36);
+            this.swSpeaker.TabIndex = 13;
+            this.swSpeaker.Text = "Bat";
+            this.swSpeaker.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swSpeaker_ValueChanged);
+            // 
             // FormServer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(842, 545);
+            this.ClientSize = new System.Drawing.Size(874, 699);
+            this.Controls.Add(this.swSpeaker);
+            this.Controls.Add(this.swVoice);
+            this.Controls.Add(uiSmoothLabel1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnChat);
             this.Controls.Add(this.uiPanel2);
             this.Controls.Add(this.uiPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormServer";
             this.Text = "Form1";
             this.uiPanel1.ResumeLayout(false);
             this.uiPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -259,11 +341,15 @@
         private Sunny.UI.UISymbolLabel uiSymbolLabel2;
         private Sunny.UI.UISymbolLabel uiSymbolLabel3;
         private Sunny.UI.UISymbolButton uiSymbolButton1;
-        private Sunny.UI.UIRichTextBox uiRichTextBox1;
-        private Sunny.UI.UISymbolButton uiSymbolButton3;
+        private Sunny.UI.UIRichTextBox txtaLog;
+        private Sunny.UI.UISymbolButton btnStop;
         private Sunny.UI.UISymbolButton btnListen;
         private Sunny.UI.UISymbolLabel uiSymbolLabel4;
         private Sunny.UI.UIPanel uiPanel2;
+        private Sunny.UI.UISymbolButton btnChat;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private Sunny.UI.UISwitch swVoice;
+        private Sunny.UI.UISwitch swSpeaker;
     }
 }
 

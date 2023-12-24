@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ using System.Windows.Forms;
 
 namespace Server
 {
-    internal class ClientHandler
+    public class ClientHandler
     {
         private TcpClient client;
         private NetworkStream stream;
@@ -26,6 +27,7 @@ namespace Server
         private string passServer;
         private VoiceIn voiceIn;
         private VoiceOut voiceOut;
+        private bool isListening;
 
         public ClientHandler(TcpClient client, string passClient)
         {
@@ -44,10 +46,14 @@ namespace Server
 
             WaveFormat waveFormat = new WaveFormat(44100,1);
             voiceOut = new VoiceOut(waveFormat, 6969); // listening port 6969
-
-            Console.WriteLine(hostname);
+            isListening = false;
         }
 
+        public void SendMessage(string message)
+        {
+            writer.Write(message);
+            stream.Flush();
+        }
         public void SendDesktop(int fps = 60)
         {
             while (isConnected)
@@ -126,10 +132,49 @@ namespace Server
                             KeyBoardCus.KeyDown(key);
                             break;
                         }
+                    case ClientMessage.MESSAGE:
+                        {
+                            string message = reader.ReadString();
+                            
+                            break;
+                        }
                     default:
                         break;
                 }
             }
+        }
+
+        public void VoiceRecorder()
+        {
+            Thread t = new Thread(() =>
+            {
+                voiceIn.StartRecording();
+            });
+            t.Start();
+        }
+        public void VoiceStop()
+        {
+            voiceIn.StopRecording();
+        }
+
+        public void ReceiveVoice()
+        {
+            isListening = true;
+            voiceOut.Play();
+            Thread t = new Thread(() =>
+            {
+                while (isListening)
+                {
+                    voiceOut?.ReceiveData();
+                }
+            });
+            t.Start();
+        }
+
+        public void StopReceiveVoice()
+        {
+            isListening = false;
+            voiceOut.Stop();
         }
 
         public void Stop()
@@ -161,24 +206,9 @@ namespace Server
                 {
                     ReceiveClientMessage();
                 });
-                Thread voiceRecord = new Thread(() =>
-                {
-                    voiceIn.StartRecording();
-                });
-                Thread voicePlay = new Thread(() =>
-                {
-                    while(true)
-                    {
-                        voiceOut.ReceiveData();
-                    }
-                    
-                });
-
-
+                
                 sendDesktop.Start();
                 receiveClientMessage.Start();
-                voiceRecord.Start();
-                voicePlay.Start();
             }
         }
 
@@ -197,8 +227,6 @@ namespace Server
             x = (int)(screenSize.X * scaleX);
             y = (int)(screenSize.Y * scaleY);
         }
-
-
 
 
     }

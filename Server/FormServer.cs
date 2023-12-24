@@ -17,18 +17,24 @@ namespace Server
         public FormServer()
         {
             InitializeComponent();
-            
+            Init();
         }
 
+        private void Init() 
+        {
+            btnStop.Enabled = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //btnChat.Enabled = false;
+
+        }
         
-        private void button1_Click(object sender, EventArgs e)
+        private void btnListen_Click(object sender, EventArgs e)
         {
-            
-            
-        }
+            btnListen.Enabled = false;
+            btnStop.Enabled = true;
+            this.Log("Server is listening!");
 
-        private void uiSymbolButton2_Click(object sender, EventArgs e)
-        {
             string pass = txtPassword.Text;
 
             server = new MyServer(5910, pass);
@@ -38,12 +44,55 @@ namespace Server
             });
 
             t.Start();
-            MessageBox.Show("Dang nghe");
         }
 
-        private void uiTextBox1_TextChanged(object sender, EventArgs e)
+        private void btnChat_Click(object sender, EventArgs e)
         {
-
+            ChatForm chatForm = new ChatForm();
+            chatForm.StartChat();
+            chatForm.Show();
         }
+
+        private void swVoice_ValueChanged(object sender, bool value)
+        {
+            var client = server.GetClientHandler();
+            if (swVoice.Active)
+            {
+                client.VoiceRecorder();
+            }
+            else
+            {
+                client.VoiceStop();
+            }
+        }
+
+        public void Log(string log)
+        {
+            txtaLog.AppendText(log+"\n");
+        }
+
+        private void swSpeaker_ValueChanged(object sender, bool value)
+        {
+            var client = server.GetClientHandler();
+            if (swSpeaker.Active)
+            {
+                client.ReceiveVoice();
+            }
+            else
+            {
+                client.StopReceiveVoice();
+            }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            btnListen.Enabled = true;
+            btnStop.Enabled = false;
+            this.Log("Server is stopped!");
+
+            server.Stop();
+        }
+
+       
     }
 }

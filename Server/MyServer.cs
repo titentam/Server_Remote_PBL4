@@ -28,19 +28,27 @@ namespace Server
 
         public void Start()
         {
+
             server = new TcpListener(IPAddress.Any,port);
             server.Start();
             isListening = true;
             while (isListening)
             {
-                var client = server.AcceptTcpClient();
-                var clientHandler = new ClientHandler(client,passServer);
-                handlers.Add(clientHandler);
-                clientHandler.Start();
+                try
+                {
+                    var client = server.AcceptTcpClient();
+                    var clientHandler = new ClientHandler(client, passServer);
+                    handlers.Add(clientHandler);
+                    clientHandler.Start();
+                }
+                catch (SocketException) 
+                {
+                    break;
+                }
+                
             }
 
         }
-
         public void Stop()
         {
            for (int i = 0; i < handlers.Count; i++)
@@ -49,6 +57,12 @@ namespace Server
                 handler.Stop();
             }
            server.Stop();
+        }
+
+        public ClientHandler GetClientHandler()
+        {
+            if (handlers.Count == 0) return null;
+            return (ClientHandler)handlers[0];
         }
 
     }
