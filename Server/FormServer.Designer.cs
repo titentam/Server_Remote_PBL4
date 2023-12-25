@@ -32,7 +32,7 @@
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.btnStop = new Sunny.UI.UISymbolButton();
             this.btnListen = new Sunny.UI.UISymbolButton();
-            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
+            this.btnResetPass = new Sunny.UI.UISymbolButton();
             this.uiSymbolLabel3 = new Sunny.UI.UISymbolLabel();
             this.uiSymbolLabel2 = new Sunny.UI.UISymbolLabel();
             this.uiSymbolLabel1 = new Sunny.UI.UISymbolLabel();
@@ -70,7 +70,7 @@
             this.uiPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.uiPanel1.Controls.Add(this.btnStop);
             this.uiPanel1.Controls.Add(this.btnListen);
-            this.uiPanel1.Controls.Add(this.uiSymbolButton1);
+            this.uiPanel1.Controls.Add(this.btnResetPass);
             this.uiPanel1.Controls.Add(this.uiSymbolLabel3);
             this.uiPanel1.Controls.Add(this.uiSymbolLabel2);
             this.uiPanel1.Controls.Add(this.uiSymbolLabel1);
@@ -115,18 +115,17 @@
             this.btnListen.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnListen.Click += new System.EventHandler(this.btnListen_Click);
             // 
-            // uiSymbolButton1
+            // btnResetPass
             // 
-            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(172, 254);
-            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton1.Name = "uiSymbolButton1";
-            this.uiSymbolButton1.Size = new System.Drawing.Size(83, 29);
-            this.uiSymbolButton1.Symbol = 61473;
-            this.uiSymbolButton1.TabIndex = 5;
-            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-          
+            this.btnResetPass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnResetPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnResetPass.Location = new System.Drawing.Point(172, 254);
+            this.btnResetPass.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnResetPass.Name = "btnResetPass";
+            this.btnResetPass.Size = new System.Drawing.Size(83, 29);
+            this.btnResetPass.Symbol = 61473;
+            this.btnResetPass.TabIndex = 5;
+            this.btnResetPass.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             // 
             // uiSymbolLabel3
             // 
@@ -337,7 +336,7 @@
         private Sunny.UI.UITextBox uiTextBox1;
         private Sunny.UI.UISymbolLabel uiSymbolLabel2;
         private Sunny.UI.UISymbolLabel uiSymbolLabel3;
-        private Sunny.UI.UISymbolButton uiSymbolButton1;
+        private Sunny.UI.UISymbolButton btnResetPass;
         private Sunny.UI.UIRichTextBox txtaLog;
         private Sunny.UI.UISymbolButton btnStop;
         private Sunny.UI.UISymbolButton btnListen;
