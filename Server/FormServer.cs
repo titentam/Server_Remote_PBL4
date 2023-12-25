@@ -22,8 +22,16 @@ namespace Server
 
         private void Init() 
         {
+            btnListen.Enabled = true;   
             btnStop.Enabled = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             btnChat.Enabled = false;
+
+            swSpeaker.Enabled = false;
+            swVoice.Enabled = false;
+            swVoice.Active = false;
+            swSpeaker.Active = false;
 
         }
         
@@ -31,7 +39,10 @@ namespace Server
         {
             btnListen.Enabled = false;
             btnStop.Enabled = true;
-            this.Log("Server is listening!");
+            swSpeaker.Enabled = true;
+            swVoice.Enabled = true;
+            btnChat.Enabled = true;
+            MessageBox.Show("Server is listening!");
 
             string pass = txtPassword.Text;
 
@@ -46,47 +57,53 @@ namespace Server
 
         private void btnChat_Click(object sender, EventArgs e)
         {
-            ChatForm.Instance.SendMessage = server.GetClientHandler().SendMessage;
-            ChatForm.Instance.Show();
+            ChatForm chatForm = new ChatForm();
+            chatForm.StartChat();
+            chatForm.Show();
         }
 
         private void swVoice_ValueChanged(object sender, bool value)
         {
             var client = server.GetClientHandler();
-            if (swVoice.Active)
+            if (client != null)
             {
-                client.VoiceRecorder();
+                if (swVoice.Active)
+                {
+                    client.VoiceRecorder();
+                }
+                else
+                {
+                    client.VoiceStop();
+                }
             }
-            else
-            {
-                client.VoiceStop();
-            }
+            
         }
 
-        public void Log(string log)
-        {
-            txtaLog.AppendText(log+"\n");
-        }
+        
 
         private void swSpeaker_ValueChanged(object sender, bool value)
         {
             var client = server.GetClientHandler();
-            if (swSpeaker.Active)
+            if (client != null)
             {
-                client.ReceiveVoice();
+                if (swSpeaker.Active)
+                {
+                    client.ReceiveVoice();
+                }
+                else
+                {
+                    client.StopReceiveVoice();
+                }
             }
-            else
-            {
-                client.StopReceiveVoice();
-            }
+            
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            btnListen.Enabled = true;
-            btnStop.Enabled = false;
-            this.Log("Server is stopped!");
+            Init();
 
+
+            MessageBox.Show("Server is stopped!");
             server.Stop();
         }
 

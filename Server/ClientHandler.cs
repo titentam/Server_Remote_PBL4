@@ -23,7 +23,7 @@ namespace Server
         private NetworkStream stream;
         private BinaryReader reader;
         private BinaryWriter writer;
-        private bool isConnected;
+        public bool isConnected;
         private string passServer;
         private VoiceIn voiceIn;
         private VoiceOut voiceOut;
@@ -58,23 +58,44 @@ namespace Server
         {
             while (isConnected)
             {
-                var bitmap = ScreenCus.CaptureScreen(false);
+                try
+                {
+                    var bitmap = ScreenCus.CaptureScreen(false);
 
-                byte[] bitmapBytes = DataHelper.BitmapToByteArray(bitmap);
+                    byte[] bitmapBytes = DataHelper.BitmapToByteArray(bitmap);
 
-                writer.Write(bitmapBytes.Length);
+                    writer.Write(bitmapBytes.Length);
 
-                writer.Write(bitmapBytes);
+                    writer.Write(bitmapBytes);
 
-                stream.Flush();
-                Thread.Sleep(1000 / fps);
+                    stream.Flush();
+                    Thread.Sleep(1000 / fps);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Client had disconnected!");
+                    this.Stop();
+                    break;
+                }
+                
             }
+            
         }
         public void ReceiveClientMessage()
         {
             while (isConnected)
             {
-                var clientMessage = (ClientMessage)reader.ReadByte();
+                ClientMessage clientMessage;
+                try
+                {
+                    clientMessage = (ClientMessage)reader.ReadByte();
+                }
+                catch (Exception)
+                {
+                    this.Stop();
+                    break;
+                }
+                
                 switch (clientMessage)
                 {
                     case ClientMessage.MOUSE_MOVE:
@@ -142,10 +163,12 @@ namespace Server
                         break;
                 }
             }
+            
         }
 
         public void VoiceRecorder()
         {
+            VoiceStop();
             Thread t = new Thread(() =>
             {
                 voiceIn.StartRecording();
@@ -154,11 +177,16 @@ namespace Server
         }
         public void VoiceStop()
         {
-            voiceIn.StopRecording();
+            if(voiceIn != null)
+            {
+                voiceIn.StopRecording();
+            }
+            
         }
 
         public void ReceiveVoice()
         {
+            StopReceiveVoice();
             isListening = true;
             voiceOut.Play();
             Thread t = new Thread(() =>
@@ -173,8 +201,13 @@ namespace Server
 
         public void StopReceiveVoice()
         {
+            
             isListening = false;
-            voiceOut.Stop();
+            if(voiceOut != null)
+            {
+                voiceOut.Stop();
+            }
+            
         }
 
         public void Stop()
@@ -184,6 +217,15 @@ namespace Server
                 isConnected = false;
                 client.Close();
             }
+            if(voiceOut != null)
+            {
+                voiceOut.Close();
+            }
+            if (voiceIn != null)
+            {
+                voiceIn.Close();
+            }
+            isConnected = false;
         }
 
         public void Start()
@@ -194,7 +236,7 @@ namespace Server
                 writer.Write(false); // send rs;
             }
             writer.Write(true);
-
+            MessageBox.Show("Client connected!");
 
             if (isConnected)
             {

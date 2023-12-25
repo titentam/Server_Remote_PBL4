@@ -38,8 +38,10 @@ namespace Server
                 {
                     var client = server.AcceptTcpClient();
                     var clientHandler = new ClientHandler(client, passServer);
+                    RemoveClient();
                     handlers.Add(clientHandler);
                     clientHandler.Start();
+                    
                 }
                 catch (SocketException) 
                 {
@@ -63,6 +65,18 @@ namespace Server
         {
             if (handlers.Count == 0) return null;
             return (ClientHandler)handlers[0];
+        }
+
+        public void RemoveClient()
+        {
+            for(int i = 0;i < handlers.Count; i++)
+            {
+                var handler = (ClientHandler)handlers[i];
+                if(!handler.isConnected)
+                {
+                    handlers.RemoveAt(i);
+                }
+            }
         }
 
     }
