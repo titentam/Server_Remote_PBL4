@@ -24,15 +24,20 @@ namespace Server
         {
             server = new TcpListener(IPAddress.Any, 6966);
             server.Start();
+            Thread t = new Thread(() =>
+            {
+               
 
-            client = server.AcceptTcpClient();
-            clientStream = client.GetStream();
+                client = server.AcceptTcpClient();
+                clientStream = client.GetStream();
 
-            listenerThread = new Thread(new ThreadStart(ListenForMessages));
-            listenerThread.Start();
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            chatArea.ReadOnly = true;
+                listenerThread = new Thread(new ThreadStart(ListenForMessages));
+                listenerThread.Start();
+                this.MaximizeBox = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                chatArea.ReadOnly = true;
+            });
+            t.Start();
         }
 
         private void ListenForMessages()
