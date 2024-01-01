@@ -270,6 +270,5 @@ namespace Server
             y = (int)(screenSize.Y * scaleY);
         }
 
-
     }
 }

@@ -9,62 +9,63 @@ namespace Server
 {
     public partial class ChatForm : Form
     {
-        private TcpListener server;
-        private TcpClient client;
+        //private TcpListener server;
+        //private TcpClient client;
         private NetworkStream clientStream;
-        private Thread listenerThread;
+        //private Thread listenerThread;
 
-        public ChatForm()
-        {
+        public ChatForm(NetworkStream clientStream)
+        {   this.clientStream = clientStream;
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            chatArea.ReadOnly = true;
 
         }
 
-        public void StartChat()
-        {
-            server = new TcpListener(IPAddress.Any, 6966);
-            server.Start();
-            Thread t = new Thread(() =>
-            {
+        //public void StartChat()
+        //{
+        //    server = new TcpListener(IPAddress.Any, 6966);
+        //    server.Start();
+        //    Thread t = new Thread(() =>
+        //    {
                
 
-                client = server.AcceptTcpClient();
-                clientStream = client.GetStream();
+        //        client = server.AcceptTcpClient();
+        //        clientStream = client.GetStream();
 
-                listenerThread = new Thread(new ThreadStart(ListenForMessages));
-                listenerThread.Start();
-                this.MaximizeBox = false;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                chatArea.ReadOnly = true;
-            });
-            t.Start();
-        }
+        //        listenerThread = new Thread(new ThreadStart(ListenForMessages));
+        //        listenerThread.Start();
+                
+        //    });
+        //    t.Start();
+        //}
 
-        private void ListenForMessages()
-        {
-            while (true)
-            {
-                byte[] message = new byte[4096];
-                int bytesRead;
+        //private void ListenForMessages()
+        //{
+        //    while (true)
+        //    {
+        //        byte[] message = new byte[4096];
+        //        int bytesRead;
 
-                try
-                {
-                    bytesRead = clientStream.Read(message, 0, 4096);
-                }
-                catch
-                {
-                    break;
-                }
+        //        try
+        //        {
+        //            bytesRead = clientStream.Read(message, 0, 4096);
+        //        }
+        //        catch
+        //        {
+        //            break;
+        //        }
 
-                if (bytesRead == 0)
-                    break;
+        //        if (bytesRead == 0)
+        //            break;
 
-                string receivedMessage = Encoding.ASCII.GetString(message, 0, bytesRead);
-                DisplayMessage("Client: " + receivedMessage);
-            }
-        }
+        //        string receivedMessage = Encoding.ASCII.GetString(message, 0, bytesRead);
+        //        DisplayMessage("Client: " + receivedMessage);
+        //    }
+        //}
 
-        private void DisplayMessage(string message)
+        public void DisplayMessage(string message)
         {
             if (InvokeRequired)
             {
