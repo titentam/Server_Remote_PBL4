@@ -29,6 +29,10 @@ namespace Server
         private VoiceOut voiceOut;
         private bool isListening;
 
+        public Action<string> DisplayMessage;
+        public Action ShowChatForm;
+        public Action CloseChatForm;
+
         public ClientHandler(TcpClient client, string passClient)
         {
             this.client = client;
@@ -37,8 +41,10 @@ namespace Server
             this.writer = new BinaryWriter(stream);
             this.isConnected = true;
             this.passServer = passClient;
+
             InitVoice();
         }
+       
         private void InitVoice()
         {
             var hostname = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
@@ -51,6 +57,7 @@ namespace Server
 
         public void SendMessage(string message)
         {
+            writer.Write((byte)1); // type message
             writer.Write(message);
             stream.Flush();
         }
@@ -63,6 +70,8 @@ namespace Server
                     var bitmap = ScreenCus.CaptureScreen(false);
 
                     byte[] bitmapBytes = DataHelper.BitmapToByteArray(bitmap);
+
+                    writer.Write((byte)0); // type screen
 
                     writer.Write(bitmapBytes.Length);
 
@@ -156,7 +165,8 @@ namespace Server
                     case ClientMessage.MESSAGE:
                         {
                             string message = reader.ReadString();
-                            
+                            ShowChatForm.Invoke();
+                            DisplayMessage.Invoke("Client: "+message);
                             break;
                         }
                     default:
@@ -226,6 +236,8 @@ namespace Server
                 voiceIn.Close();
             }
             isConnected = false;
+
+            CloseChatForm.Invoke();
         }
 
         public void Start()

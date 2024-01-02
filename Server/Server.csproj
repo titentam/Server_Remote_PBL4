@@ -59,11 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatForm.cs">
+    <Compile Include="ChatFormServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChatForm.Designer.cs">
-      <DependentUpon>ChatForm.cs</DependentUpon>
+    <Compile Include="ChatFormServer.Designer.cs">
+      <DependentUpon>ChatFormServer.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientHandler.cs" />
     <Compile Include="FormServer.cs">
@@ -75,8 +75,8 @@
     <Compile Include="MyServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChatForm.resx">
-      <DependentUpon>ChatForm.cs</DependentUpon>
+    <EmbeddedResource Include="ChatFormServer.resx">
+      <DependentUpon>ChatFormServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormServer.resx">
       <DependentUpon>FormServer.cs</DependentUpon>

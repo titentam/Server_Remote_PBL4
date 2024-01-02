@@ -18,12 +18,72 @@ namespace Server
         private bool isListening;
         private ArrayList handlers;
         private string passServer;
+        public ChatFormServer chatForm;
 
+        public Action ShowChatForm;
         public MyServer(int port, string passServer="")
         {
             this.port = port;
             handlers = new ArrayList();
             this.passServer = passServer;
+
+            
+        }
+        public void InitChat()
+        {
+            chatForm = new ChatFormServer();
+            chatForm.Show();
+            chatForm.Visible = false;
+            chatForm.SendMessage += SendMessage;
+
+
+            var client = GetClientHandler();
+            if (client == null) return;
+            client.DisplayMessage += chatForm.DisplayMessage;
+            
+
+        }
+
+        public void ShowChat()
+        {
+            if (chatForm == null || chatForm.IsDisposed)
+            {
+                ShowChatForm.Invoke();
+            }
+        }
+
+        public void CloseChat()
+        {
+            if(chatForm!=null)
+            {
+                try
+                {
+                    chatForm.Invoke(new Action(() =>
+                    {
+                        chatForm.Dispose();
+                    }));
+                }
+                catch (Exception)
+                {
+
+                    // do something;
+                }
+                
+                
+            }
+        }
+
+        public static string GetIp()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "";
         }
 
         public void Start()
@@ -32,14 +92,23 @@ namespace Server
             server = new TcpListener(IPAddress.Any,port);
             server.Start();
             isListening = true;
+
+            //InitChat();
             while (isListening)
             {
                 try
                 {
                     var client = server.AcceptTcpClient();
                     var clientHandler = new ClientHandler(client, passServer);
+
+                    clientHandler.ShowChatForm += ShowChat;
+                    clientHandler.CloseChatForm += CloseChat;
+
+
+
                     RemoveClient();
                     handlers.Add(clientHandler);
+                    
                     clientHandler.Start();
                     
                 }
@@ -53,12 +122,17 @@ namespace Server
         }
         public void Stop()
         {
-           for (int i = 0; i < handlers.Count; i++)
+            for (int i = 0; i < handlers.Count; i++)
             {
                 var handler = (ClientHandler)handlers[i];
                 handler.Stop();
             }
-           server.Stop();
+            if(chatForm != null)
+            {
+                chatForm.Dispose();
+            }
+          
+            server.Stop();
         }
 
         public ClientHandler GetClientHandler()
@@ -67,7 +141,7 @@ namespace Server
             return (ClientHandler)handlers[0];
         }
 
-        public void RemoveClient()
+        private void RemoveClient()
         {
             for(int i = 0;i < handlers.Count; i++)
             {
@@ -78,6 +152,15 @@ namespace Server
                 }
             }
         }
+
+        private void SendMessage(string message)
+        {
+            var client = GetClientHandler();
+            if (client == null) return;
+            client.SendMessage(message);
+        }
+
+
 
     }
 }

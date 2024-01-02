@@ -122,6 +122,7 @@
             this.btnResetPass.Symbol = 61473;
             this.btnResetPass.TabIndex = 5;
             this.btnResetPass.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
             // uiSymbolLabel3
             // 
@@ -213,7 +214,7 @@
             this.btnChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnChat.Location = new System.Drawing.Point(189, 456);
-            this.btnChat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChat.Margin = new System.Windows.Forms.Padding(2);
             this.btnChat.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnChat.Name = "btnChat";
             this.btnChat.Size = new System.Drawing.Size(91, 31);
@@ -271,7 +272,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.uiPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormServer";
             this.Text = "Form1";
             this.uiPanel1.ResumeLayout(false);

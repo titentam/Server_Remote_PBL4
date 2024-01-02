@@ -1,6 +1,6 @@
 ﻿namespace Server
 {
-    partial class ChatForm
+    partial class ChatFormServer
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@
             this.chatArea = new Sunny.UI.UIRichTextBox();
             this.uiRichTextBox2 = new Sunny.UI.UIRichTextBox();
             this.uiPanel1 = new Sunny.UI.UIPanel();
-            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.chatTxt = new Sunny.UI.UITextBox();
+            this.uiSymbolButton1 = new Sunny.UI.UISymbolButton();
             this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@
             this.chatArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chatArea.MinimumSize = new System.Drawing.Size(1, 1);
             this.chatArea.Name = "chatArea";
-            this.chatArea.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chatArea.Padding = new System.Windows.Forms.Padding(2);
             this.chatArea.ShowText = false;
             this.chatArea.Size = new System.Drawing.Size(375, 313);
             this.chatArea.Style = Sunny.UI.UIStyle.Custom;
@@ -60,7 +60,7 @@
             this.uiRichTextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uiRichTextBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRichTextBox2.Name = "uiRichTextBox2";
-            this.uiRichTextBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.uiRichTextBox2.Padding = new System.Windows.Forms.Padding(2);
             this.uiRichTextBox2.ShowText = false;
             this.uiRichTextBox2.Size = new System.Drawing.Size(6, 6);
             this.uiRichTextBox2.Style = Sunny.UI.UIStyle.Custom;
@@ -83,20 +83,6 @@
             this.uiPanel1.Text = "uiPanel1";
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiSymbolButton1
-            // 
-            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiSymbolButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.uiSymbolButton1.Location = new System.Drawing.Point(312, 5);
-            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiSymbolButton1.Name = "uiSymbolButton1";
-            this.uiSymbolButton1.Size = new System.Drawing.Size(60, 45);
-            this.uiSymbolButton1.Symbol = 557699;
-            this.uiSymbolButton1.SymbolSize = 35;
-            this.uiSymbolButton1.TabIndex = 1;
-            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
-            // 
             // chatTxt
             // 
             this.chatTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -112,7 +98,21 @@
             this.chatTxt.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.chatTxt.Watermark = "";
             // 
-            // ChatForm
+            // uiSymbolButton1
+            // 
+            this.uiSymbolButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiSymbolButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.uiSymbolButton1.Location = new System.Drawing.Point(312, 5);
+            this.uiSymbolButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiSymbolButton1.Name = "uiSymbolButton1";
+            this.uiSymbolButton1.Size = new System.Drawing.Size(60, 45);
+            this.uiSymbolButton1.Symbol = 557699;
+            this.uiSymbolButton1.SymbolSize = 35;
+            this.uiSymbolButton1.TabIndex = 1;
+            this.uiSymbolButton1.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.uiSymbolButton1.Click += new System.EventHandler(this.uiSymbolButton1_Click);
+            // 
+            // ChatFormServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,9 +120,10 @@
             this.Controls.Add(this.uiPanel1);
             this.Controls.Add(this.uiRichTextBox2);
             this.Controls.Add(this.chatArea);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "ChatForm";
-            this.Text = "ChatForm";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "ChatFormServer";
+            this.Text = "ChatFormServer";
+
             this.uiPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
